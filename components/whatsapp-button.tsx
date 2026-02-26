@@ -5,7 +5,7 @@ import { MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
-const WA_NUMBER = "5511999999999"
+const WA_NUMBER = "5531984382472"
 
 export function buildWhatsAppUrl(message: string) {
   return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`
@@ -41,9 +41,9 @@ export function WhatsAppButton({
       variant={variant}
       className={cn(
         variant === "default" &&
-          "bg-emerald-500 text-white hover:bg-emerald-600 shadow-lg shadow-emerald-500/25",
+        "bg-emerald-500 text-white hover:bg-emerald-600 shadow-lg shadow-emerald-500/25",
         variant === "outline" &&
-          "border-emerald-500/50 text-emerald-600 hover:bg-emerald-50 dark:text-emerald-400 dark:hover:bg-emerald-950/30",
+        "border-emerald-500/50 text-emerald-600 hover:bg-emerald-50 dark:text-emerald-400 dark:hover:bg-emerald-950/30",
         "rounded-full font-semibold gap-2",
         className
       )}

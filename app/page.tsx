@@ -21,7 +21,7 @@ export default function Home() {
         <ServicesSection />
         <ChatbotDemo />
         <HowItWorksSection />
-        <PortfolioSection />
+        {/* <PortfolioSection /> */}
         <TestimonialsSection />
         <PricingSection />
         <FaqSection />
