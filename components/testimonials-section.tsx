@@ -1,6 +1,7 @@
 "use client"
 
 import { Star, Quote, ExternalLink, Building2 } from "lucide-react"
+import { track } from "@vercel/analytics"
 
 const testimonials = [
   {
@@ -11,7 +12,7 @@ const testimonials = [
       "Antes eu dependia só do Instagram. Agora tenho um site profissional com WhatsApp integrado e os agendamentos chegam sozinhos. Valeu cada centavo.",
     rating: 5,
     initials: "MS",
-    siteUrl: "#",
+    siteUrl: "https://clinicaaura.com.br",
   },
   {
     name: "Ricardo T.",
@@ -21,7 +22,7 @@ const testimonials = [
       "A SDZ entregou exatamente o que eu precisava: um site sério, rápido e que passa credibilidade. Em menos de uma semana já estava no ar.",
     rating: 5,
     initials: "RT",
-    siteUrl: "#",
+    siteUrl: "https://advocaciarocha.com.br",
   },
   {
     name: "Fernanda L.",
@@ -31,7 +32,7 @@ const testimonials = [
       "Comecei só com o site e depois adicionei o chatbot. Hoje atendo clientes no WhatsApp de forma automática. Minha equipe foca no que realmente importa.",
     rating: 5,
     initials: "FL",
-    siteUrl: "#",
+    siteUrl: "https://tendenciastore.com.br",
   },
 ]
 
@@ -92,6 +93,7 @@ export function TestimonialsSection() {
                   href={t.siteUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => track("testimonial_site_click", { business: t.business })}
                   className="mt-4 flex items-center gap-1.5 text-xs text-primary/70 hover:text-primary transition-colors"
                 >
                   <ExternalLink className="size-3" />

@@ -65,27 +65,32 @@ export function Footer() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-4">
+          <div className="flex flex-col items-center gap-6 md:items-end">
+            <div className="flex items-center gap-4">
+              <a
+                href="#"
+                className="flex size-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-all hover:border-primary/30 hover:text-primary"
+                aria-label="Instagram"
+              >
+                <InstagramIcon className="size-4" />
+              </a>
+              <a
+                href="#"
+                className="flex size-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-all hover:border-primary/30 hover:text-primary"
+                aria-label="LinkedIn"
+              >
+                <LinkedInIcon className="size-4" />
+              </a>
+            </div>
+
             <a
-              href="#"
-              className="flex size-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-all hover:border-primary/30 hover:text-primary"
-              aria-label="Instagram"
-            >
-              <InstagramIcon className="size-4" />
-            </a>
-            <a
-              href="#"
-              className="flex size-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-all hover:border-primary/30 hover:text-primary"
-              aria-label="LinkedIn"
-            >
-              <LinkedInIcon className="size-4" />
-            </a>
-            <a
-              href="#"
-              className="flex size-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-all hover:border-primary/30 hover:text-primary"
-              aria-label="WhatsApp"
+              href="https://wa.me/5511999999999"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 rounded-full bg-emerald-500/10 px-4 py-2 text-sm font-semibold text-emerald-600 transition-all hover:bg-emerald-500/20 active:scale-95 dark:text-emerald-400"
             >
               <WhatsAppIcon className="size-4" />
+              Fale no WhatsApp agora
             </a>
           </div>
         </div>

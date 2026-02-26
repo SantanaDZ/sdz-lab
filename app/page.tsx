@@ -5,6 +5,7 @@ import { ServicesSection } from "@/components/services-section"
 import { ChatbotDemo } from "@/components/chatbot-demo"
 import { HowItWorksSection } from "@/components/how-it-works-section"
 import { TestimonialsSection } from "@/components/testimonials-section"
+import { PortfolioSection } from "@/components/portfolio-section"
 import { PricingSection } from "@/components/pricing-section"
 import { FaqSection } from "@/components/faq-section"
 import { CtaFinal } from "@/components/cta-final"
@@ -20,6 +21,7 @@ export default function Home() {
         <ServicesSection />
         <ChatbotDemo />
         <HowItWorksSection />
+        <PortfolioSection />
         <TestimonialsSection />
         <PricingSection />
         <FaqSection />
