@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx claude-code-templates@latest --agent=business-marketing/product-manager --yes)",
+      "Bash(npm run lint)",
+      "Bash(npm run build)"
+    ]
+  }
+}
