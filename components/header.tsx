@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 
@@ -8,6 +9,7 @@ const navLinks = [
   { label: "Serviços", href: "#servicos" },
   { label: "Como Funciona", href: "#como-funciona" },
   { label: "Diferenciais", href: "#diferenciais" },
+  { label: "Planos", href: "/planos" },
   { label: "FAQ", href: "#faq" },
 ]
 
@@ -43,15 +45,25 @@ export function Header() {
         </a>
 
         <nav className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm text-muted-foreground transition-colors hover:text-primary"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.href.startsWith("/") ? (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm text-muted-foreground transition-colors hover:text-primary"
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm text-muted-foreground transition-colors hover:text-primary"
+              >
+                {link.label}
+              </a>
+            )
+          )}
         </nav>
 
         <div className="hidden md:block">
@@ -75,16 +87,27 @@ export function Header() {
       {mobileOpen && (
         <div className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border">
           <nav className="flex flex-col gap-4 px-6 py-6">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-base text-muted-foreground transition-colors hover:text-primary"
-                onClick={() => setMobileOpen(false)}
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) =>
+              link.href.startsWith("/") ? (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-base text-muted-foreground transition-colors hover:text-primary"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-base text-muted-foreground transition-colors hover:text-primary"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {link.label}
+                </a>
+              )
+            )}
             <Button
               asChild
               className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold rounded-full mt-2 w-full"

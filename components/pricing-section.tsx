@@ -1,6 +1,7 @@
 "use client"
 
-import { Check } from "lucide-react"
+import Link from "next/link"
+import { Check, ArrowRight } from "lucide-react"
 import { WhatsAppButton } from "@/components/whatsapp-button"
 
 const packages = [
@@ -139,6 +140,16 @@ export function PricingSection() {
               />
             </div>
           ))}
+        </div>
+
+        <div className="mt-12 text-center">
+          <Link
+            href="/planos"
+            className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+          >
+            Ver planos com preços fixos
+            <ArrowRight className="size-4" />
+          </Link>
         </div>
       </div>
     </section>
