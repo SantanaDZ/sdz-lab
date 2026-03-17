@@ -22,7 +22,7 @@ export default function Home() {
         <ChatbotDemo />
         <HowItWorksSection />
         {/* <PortfolioSection /> */}
-        <TestimonialsSection />
+        {/* <TestimonialsSection /> */}
         <PricingSection />
         <FaqSection />
         <CtaFinal />
