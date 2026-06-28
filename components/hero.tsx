@@ -1,9 +1,10 @@
 "use client"
 
 import { useEffect, useRef } from "react"
+import Link from "next/link"
 import { track } from "@vercel/analytics"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Globe, MessageCircle, Mail, CheckCircle } from "lucide-react"
+import { Globe, MessageCircle, Mail, CheckCircle } from "lucide-react"
 import { WhatsAppButton } from "@/components/whatsapp-button"
 
 function Particles() {
@@ -207,10 +208,10 @@ export function Hero() {
               asChild
               variant="outline"
               size="lg"
-              className="rounded-full px-8 py-6 text-base border-border text-foreground hover:bg-secondary hover:text-secondary-foreground"
-              onClick={() => track("hero_secondary_cta_click")}
+              className="rounded-full border-primary/40 px-8 py-6 text-base text-primary hover:bg-primary/10"
+              onClick={() => track("hero_orcamento_cta_click")}
             >
-              <a href="#como-funciona">Como funciona?</a>
+              <Link href="/orcamento">Solicitar Orçamento grátis</Link>
             </Button>
           </div>
         </div>

@@ -144,7 +144,7 @@ export function PricingSection() {
 
         <div className="mt-12 text-center">
           <Link
-            href="/planos"
+            href="/#cta-final"
             className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
           >
             Ver planos com preços fixos

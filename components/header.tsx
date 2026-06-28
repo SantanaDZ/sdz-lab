@@ -9,7 +9,6 @@ const navLinks = [
   { label: "Serviços", href: "#servicos" },
   { label: "Como Funciona", href: "#como-funciona" },
   { label: "Diferenciais", href: "#diferenciais" },
-  { label: "Planos", href: "/planos" },
   { label: "FAQ", href: "#faq" },
 ]
 
@@ -66,10 +65,17 @@ export function Header() {
           )}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-3 md:flex">
           <Button
             asChild
-            className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold rounded-full px-6"
+            variant="outline"
+            className="rounded-full border-primary/40 px-6 text-primary hover:bg-primary/10"
+          >
+            <Link href="/orcamento">Solicitar Orçamento</Link>
+          </Button>
+          <Button
+            asChild
+            className="rounded-full bg-primary px-6 font-semibold text-primary-foreground hover:bg-primary/90"
           >
             <a href="#cta-final">Quero meu site</a>
           </Button>
@@ -108,9 +114,16 @@ export function Header() {
                 </a>
               )
             )}
+            <Link
+              href="/orcamento"
+              className="text-base text-primary transition-colors hover:text-primary/80"
+              onClick={() => setMobileOpen(false)}
+            >
+              Solicitar Orçamento
+            </Link>
             <Button
               asChild
-              className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold rounded-full mt-2 w-full"
+              className="mt-2 w-full rounded-full bg-primary font-semibold text-primary-foreground hover:bg-primary/90"
             >
               <a href="#cta-final" onClick={() => setMobileOpen(false)}>
                 Quero meu site
