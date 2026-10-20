@@ -1,24 +1,23 @@
 import type { Metadata, Viewport } from 'next'
-import { DM_Sans, Syne } from 'next/font/google'
+import { Inter, Space_Grotesk } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { FloatingWhatsApp } from '@/components/floating-whatsapp'
 import './globals.css'
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ['latin'],
-  variable: '--font-dm-sans',
+  variable: '--font-inter',
 })
 
-const syne = Syne({
+const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
-  variable: '--font-syne',
+  variable: '--font-grotesk',
 })
 
 export const metadata: Metadata = {
-  title: 'SDZ — Sites Profissionais e Automação Digital',
+  title: 'SDZLab — Tecnologia, IA e Design para empresas',
   description:
-    'A SDZ cria sites modernos do zero com integração nativa ao WhatsApp e e-mail. Chatbot, automações e marketing digital para pequenas e médias empresas.',
-  generator: 'v0.app',
+    'Sites, e-commerce, automações, chatbots com IA no WhatsApp, sistemas sob medida, identidade visual e marketing digital para empresas de BH e região.',
   icons: {
     icon: [
       {
@@ -41,7 +40,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#0D1B2A',
+  themeColor: '#0F1220',
 }
 
 export default function RootLayout({
@@ -52,7 +51,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body
-        className={`${dmSans.variable} ${syne.variable} font-sans antialiased`}
+        className={`${inter.variable} ${spaceGrotesk.variable} font-sans antialiased`}
       >
         {/* Google Analytics Placeholder */}
         {/* <Script src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX" strategy="afterInteractive" /> */}

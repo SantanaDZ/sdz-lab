@@ -1,67 +1,41 @@
-"use client"
-
-import { MessageSquare, Laptop, Rocket } from "lucide-react"
-
 const steps = [
   {
-    icon: MessageSquare,
-    step: "01",
-    title: "Conte sobre o seu negócio",
+    title: "Conversa",
     description:
-      "Conversamos sobre seus objetivos, público-alvo, referências e o que você precisa. Sem formulários complicados — só uma conversa.",
+      "Você conta como sua empresa funciona hoje e onde quer chegar. Sem formulário complicado — só uma conversa no WhatsApp.",
   },
   {
-    icon: Laptop,
-    step: "02",
-    title: "A SDZ cria tudo para você",
+    title: "Proposta sob medida",
     description:
-      "Desenvolvemos seu site moderno do zero, com integração nativa ao WhatsApp e e-mail. Você acompanha, aprova e a gente ajusta.",
+      "Montamos um plano com o que faz sentido agora: tecnologia, IA, design ou tudo junto. Prazo e valor claros.",
   },
   {
-    icon: Rocket,
-    step: "03",
-    title: "Você vai ao ar e cresce",
+    title: "Entrega e evolução",
     description:
-      "Site no ar, leads chegando, atendimento organizado. E conforme seu negócio cresce, você pode adicionar chatbot, automações e marketing.",
+      "Colocamos tudo no ar, acompanhamos os resultados e evoluímos junto com o seu negócio.",
   },
 ]
 
 export function HowItWorksSection() {
   return (
-    <section id="como-funciona" className="relative py-24 px-6">
-      <div className="mx-auto max-w-7xl">
-        <div className="text-center mb-16">
-          <span className="mb-4 inline-block rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
-            Processo
-          </span>
-          <h2 className="font-serif text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl text-balance">
-            Como a SDZ trabalha
-          </h2>
-        </div>
+    <section id="como-funciona" className="border-y border-border px-6 py-24 lg:py-32">
+      <div className="mx-auto max-w-6xl">
+        <p className="eyebrow text-muted-foreground">Como funciona</p>
+        <h2 className="mt-5 max-w-2xl font-serif text-4xl font-bold leading-[1.05] tracking-tight text-balance sm:text-5xl">
+          Simples do primeiro contato à entrega.
+        </h2>
 
-        <div className="relative grid gap-8 md:grid-cols-3">
-          {/* Connecting line */}
-          <div className="absolute top-[4.5rem] left-[16.67%] right-[16.67%] hidden h-px bg-gradient-to-r from-primary/20 via-primary/40 to-primary/20 md:block" />
-
-          {steps.map((step) => (
-            <div key={step.title} className="relative flex flex-col items-center text-center">
-              <div className="relative mb-6">
-                <div className="flex size-20 items-center justify-center rounded-2xl border-2 border-primary/30 bg-card">
-                  <step.icon className="size-9 text-primary" />
-                </div>
-                <div className="absolute -top-2 -right-2 flex size-8 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
-                  {step.step}
-                </div>
-              </div>
-              <h3 className="mb-3 font-serif text-xl font-bold text-foreground">
-                {step.title}
-              </h3>
-              <p className="max-w-xs text-muted-foreground leading-relaxed">
-                {step.description}
-              </p>
-            </div>
+        <ol className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-3">
+          {steps.map((step, i) => (
+            <li key={step.title} className="bg-background p-8 lg:p-10">
+              <span className="font-serif text-sm font-semibold tabular-nums text-muted-foreground">
+                0{i + 1}
+              </span>
+              <h3 className="mt-8 font-serif text-2xl font-semibold">{step.title}</h3>
+              <p className="mt-3 leading-relaxed text-muted-foreground">{step.description}</p>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   )

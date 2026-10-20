@@ -8,14 +8,22 @@ import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
 import { Loader2, CheckCircle2, ArrowLeft } from "lucide-react"
+import { Logo } from "@/components/logo"
 
 const SERVICOS = [
-  "Landing Page",
-  "Site completo",
-  "Loja virtual",
-  "Integração WhatsApp",
-  "Chatbot inteligente",
-  "Automações com IA",
+  "Site",
+  "E-commerce",
+  "Automações",
+  "Marketing com IA",
+  "Chatbot no WhatsApp",
+  "Sistema sob medida",
+  "Integrações",
+  "Captação de clientes",
+  "Dashboards de resultados",
+  "Identidade visual e logo",
+  "Criativos",
+  "Gestão de redes sociais",
+  "Marketing digital",
 ]
 
 export default function OrcamentoPage() {
@@ -65,12 +73,8 @@ export default function OrcamentoPage() {
     <div className="min-h-screen bg-background">
       <div className="border-b border-border">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <Link href="/" className="flex items-center gap-2">
-            <span className="font-serif text-2xl font-bold tracking-tight text-foreground">SDZ</span>
-            <span className="hidden sm:inline-block text-xs text-muted-foreground font-medium">|</span>
-            <span className="hidden sm:inline-block text-xs text-muted-foreground font-medium">
-              Sites & Automação Digital
-            </span>
+          <Link href="/" aria-label="SDZLab — início">
+            <Logo />
           </Link>
           <Link
             href="/"
@@ -84,9 +88,7 @@ export default function OrcamentoPage() {
 
       <div className="mx-auto max-w-2xl px-6 py-16">
         <div className="mb-8 text-center">
-          <span className="mb-4 inline-block rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
-            100% gratuito e sem compromisso
-          </span>
+          <p className="eyebrow mb-4 text-ai">100% gratuito e sem compromisso</p>
           <h1 className="font-serif text-3xl font-bold text-foreground sm:text-4xl text-balance">
             Solicite seu orçamento
           </h1>

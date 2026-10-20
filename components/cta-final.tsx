@@ -1,92 +1,51 @@
 "use client"
 
-import { useState } from "react"
 import { track } from "@vercel/analytics"
-import { Button } from "@/components/ui/button"
-import { ArrowRight, CheckCircle2 } from "lucide-react"
 import { WhatsAppButton } from "@/components/whatsapp-button"
+import { CONTACTS, OWNER, REGION, waUrl } from "@/lib/site"
 
 export function CtaFinal() {
-  const [email, setEmail] = useState("")
-  const [submitted, setSubmitted] = useState(false)
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!email.trim()) return
-    track("email_form_submit")
-    setSubmitted(true)
-  }
-
   return (
-    <section
-      id="cta-final"
-      className="relative py-24 px-6"
-    >
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-primary/10 pointer-events-none" />
-      <div className="relative mx-auto max-w-3xl text-center">
-        <h2 className="font-serif text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl text-balance">
-          Profissionalize sua presença online hoje mesmo.
-        </h2>
-        <p className="mt-6 text-lg text-muted-foreground text-pretty">
-          Fale agora pelo WhatsApp ou deixe seu e-mail — respondemos em até 24h
-          para entender o seu negócio e montar o projeto ideal, sem compromisso.
-        </p>
-
-        {submitted ? (
-          <div className="mt-10 flex flex-col items-center gap-4 animate-fade-in-up">
-            <div className="flex size-16 items-center justify-center rounded-full bg-primary/20">
-              <CheckCircle2 className="size-8 text-primary" />
-            </div>
-            <p className="text-lg font-semibold text-foreground">
-              Obrigado! Entraremos em contato em breve.
+    <section id="contato" className="px-6 pb-24 lg:pb-32">
+      <div className="mx-auto max-w-6xl overflow-hidden rounded-3xl border border-border bg-card">
+        <div className="h-1 bg-gradient-to-r from-tech via-ai to-brand" />
+        <div className="grid gap-12 p-8 sm:p-12 lg:grid-cols-[1.2fr_1fr] lg:items-end lg:p-16">
+          <div>
+            <h2 className="font-serif text-4xl font-bold leading-[1.05] tracking-tight text-balance sm:text-5xl">
+              Vamos dar o próximo passo juntos?
+            </h2>
+            <p className="mt-5 max-w-md text-lg leading-relaxed text-muted-foreground text-pretty">
+              Conte o que sua empresa precisa. Respondemos rápido e o orçamento é grátis.
             </p>
-            <p className="text-muted-foreground text-sm">
-              Fique de olho no seu e-mail — resposta em até 24h.
+            <WhatsAppButton
+              message="Olá! Quero um orçamento grátis com a SDZLab."
+              label="Orçamento grátis"
+              trackingLabel="whatsapp_cta_final"
+              className="mt-8"
+            />
+          </div>
+
+          <div className="lg:text-right">
+            <p className="text-muted-foreground">Fale comigo no WhatsApp</p>
+            <div className="mt-3 flex flex-col gap-1">
+              {CONTACTS.map((c) => (
+                <a
+                  key={c.wa}
+                  href={waUrl("Olá! Vi o site da SDZLab e gostaria de conversar.", c.wa)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => track("whatsapp_click", { label: `whatsapp_number_${c.wa}` })}
+                  className="font-serif text-3xl font-bold tracking-tight transition-colors hover:text-ai sm:text-4xl"
+                >
+                  {c.display}
+                </a>
+              ))}
+            </div>
+            <p className="mt-3 text-muted-foreground">
+              {OWNER} · {REGION}
             </p>
           </div>
-        ) : (
-          <>
-            <div className="mt-10 flex justify-center">
-              <WhatsAppButton
-                message="Olá! Quero profissionalizar minha presença online. Pode me ajudar?"
-                label="Falar no WhatsApp agora"
-                trackingLabel="whatsapp_cta_final"
-                className="px-10 py-6 text-base"
-              />
-            </div>
-
-            <div className="mt-6 flex items-center gap-4 text-muted-foreground">
-              <div className="h-px flex-1 bg-border" />
-              <span className="text-sm">ou prefere e-mail?</span>
-              <div className="h-px flex-1 bg-border" />
-            </div>
-
-            <form
-              onSubmit={handleSubmit}
-              className="mt-6 mx-auto flex max-w-md flex-col gap-4 sm:flex-row"
-            >
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Seu melhor e-mail"
-                className="flex-1 rounded-full border border-border bg-card px-6 py-3 text-sm text-card-foreground placeholder:text-muted-foreground outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all"
-              />
-              <Button
-                type="submit"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 py-3 font-semibold shadow-lg shadow-primary/25"
-              >
-                <span>Enviar</span>
-                <ArrowRight className="ml-2 size-4" />
-              </Button>
-            </form>
-          </>
-        )}
-
-        <p className="mt-4 text-xs text-muted-foreground">
-          Sem compromisso. Orçamento gratuito. Resposta em até 24h.
-        </p>
+        </div>
       </div>
     </section>
   )

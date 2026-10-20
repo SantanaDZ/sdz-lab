@@ -1,57 +1,38 @@
 "use client"
 
 import { track } from "@vercel/analytics"
-import { MessageCircle } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { waUrl } from "@/lib/site"
 
-const WA_NUMBER = "5531984382472"
-
-export function buildWhatsAppUrl(message: string) {
-  return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`
-}
+export const buildWhatsAppUrl = waUrl
 
 interface WhatsAppButtonProps {
   message?: string
   label?: string
   trackingLabel?: string
   className?: string
-  size?: "default" | "sm" | "lg" | "icon"
-  variant?: "default" | "outline" | "ghost"
 }
 
 export function WhatsAppButton({
-  message = "Olá! Gostaria de saber mais sobre os serviços da SDZ.",
+  message = "Olá! Gostaria de saber mais sobre os serviços da SDZLab.",
   label = "Falar no WhatsApp",
   trackingLabel = "whatsapp_cta_generic",
   className,
-  size = "lg",
-  variant = "default",
 }: WhatsAppButtonProps) {
-  const href = buildWhatsAppUrl(message)
-
-  const handleClick = () => {
-    track("whatsapp_click", { label: trackingLabel })
-  }
-
   return (
-    <Button
-      asChild
-      size={size}
-      variant={variant}
+    <a
+      href={waUrl(message)}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={() => track("whatsapp_click", { label: trackingLabel })}
       className={cn(
-        variant === "default" &&
-        "bg-emerald-500 text-white hover:bg-emerald-600 shadow-lg shadow-emerald-500/25",
-        variant === "outline" &&
-        "border-emerald-500/50 text-emerald-600 hover:bg-emerald-50 dark:text-emerald-400 dark:hover:bg-emerald-950/30",
-        "rounded-full font-semibold gap-2",
+        "group inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 font-serif text-base font-semibold text-primary-foreground transition-all hover:bg-primary/90 active:scale-[0.98]",
         className
       )}
     >
-      <a href={href} target="_blank" rel="noopener noreferrer" onClick={handleClick}>
-        <MessageCircle className="size-5" />
-        {label}
-      </a>
-    </Button>
+      {label}
+      <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+    </a>
   )
 }

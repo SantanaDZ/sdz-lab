@@ -1,14 +1,15 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
+import { Logo } from "@/components/logo"
+import { WhatsAppButton } from "@/components/whatsapp-button"
 
 const navLinks = [
-  { label: "Serviços", href: "#servicos" },
-  { label: "Como Funciona", href: "#como-funciona" },
-  { label: "Diferenciais", href: "#diferenciais" },
+  { label: "Tecnologia", href: "#tecnologia" },
+  { label: "IA", href: "#ia" },
+  { label: "Design & Marketing", href: "#design" },
+  { label: "Como funciona", href: "#como-funciona" },
   { label: "FAQ", href: "#faq" },
 ]
 
@@ -18,71 +19,46 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener("scroll", handleScroll)
+    handleScroll()
+    window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-background/90 backdrop-blur-xl border-b border-border shadow-lg"
-          : "bg-transparent"
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+        scrolled || mobileOpen
+          ? "border-b border-border bg-background/85 backdrop-blur-xl"
+          : "border-b border-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <a href="#" className="flex items-center gap-2">
-          <span className="font-serif text-2xl font-bold tracking-tight text-foreground">
-            SDZ
-          </span>
-          <span className="hidden sm:inline-block text-xs text-muted-foreground font-medium">
-            |
-          </span>
-          <span className="hidden sm:inline-block text-xs text-muted-foreground font-medium">
-            Sites & Automação Digital
-          </span>
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+        <a href="#" aria-label="SDZLab — início">
+          <Logo />
         </a>
 
-        <nav className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) =>
-            link.href.startsWith("/") ? (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm text-muted-foreground transition-colors hover:text-primary"
-              >
-                {link.label}
-              </Link>
-            ) : (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm text-muted-foreground transition-colors hover:text-primary"
-              >
-                {link.label}
-              </a>
-            )
-          )}
+        <nav className="hidden items-center gap-8 lg:flex">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {link.label}
+            </a>
+          ))}
         </nav>
 
-        <div className="hidden items-center gap-3 md:flex">
-          <Button
-            asChild
-            variant="outline"
-            className="rounded-full border-primary/40 px-6 text-primary hover:bg-primary/10"
-          >
-            <Link href="/orcamento">Solicitar Orçamento</Link>
-          </Button>
-          <Button
-            asChild
-            className="rounded-full bg-primary px-6 font-semibold text-primary-foreground hover:bg-primary/90"
-          >
-            <a href="#cta-final">Quero meu site</a>
-          </Button>
+        <div className="hidden lg:block">
+          <WhatsAppButton
+            label="Fale com a gente"
+            trackingLabel="whatsapp_header"
+            className="px-5 py-2.5 text-sm"
+          />
         </div>
 
         <button
-          className="md:hidden text-foreground"
+          className="text-foreground lg:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label={mobileOpen ? "Fechar menu" : "Abrir menu"}
         >
@@ -91,46 +67,23 @@ export function Header() {
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border">
-          <nav className="flex flex-col gap-4 px-6 py-6">
-            {navLinks.map((link) =>
-              link.href.startsWith("/") ? (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-base text-muted-foreground transition-colors hover:text-primary"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              ) : (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="text-base text-muted-foreground transition-colors hover:text-primary"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {link.label}
-                </a>
-              )
-            )}
-            <Link
-              href="/orcamento"
-              className="text-base text-primary transition-colors hover:text-primary/80"
+        <nav className="flex flex-col gap-1 border-t border-border px-6 pb-6 pt-3 lg:hidden">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="py-2.5 text-base text-muted-foreground transition-colors hover:text-foreground"
               onClick={() => setMobileOpen(false)}
             >
-              Solicitar Orçamento
-            </Link>
-            <Button
-              asChild
-              className="mt-2 w-full rounded-full bg-primary font-semibold text-primary-foreground hover:bg-primary/90"
-            >
-              <a href="#cta-final" onClick={() => setMobileOpen(false)}>
-                Quero meu site
-              </a>
-            </Button>
-          </nav>
-        </div>
+              {link.label}
+            </a>
+          ))}
+          <WhatsAppButton
+            label="Fale com a gente"
+            trackingLabel="whatsapp_header_mobile"
+            className="mt-3 w-full"
+          />
+        </nav>
       )}
     </header>
   )

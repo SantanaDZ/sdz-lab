@@ -4,45 +4,50 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #0D1B2A;
-  --foreground: #F0F4F8;
-  --card: #132235;
-  --card-foreground: #F0F4F8;
-  --popover: #132235;
-  --popover-foreground: #F0F4F8;
-  --primary: #00E5C4;
-  --primary-foreground: #0D1B2A;
-  --secondary: #1B2D44;
-  --secondary-foreground: #F0F4F8;
-  --muted: #1B2D44;
-  --muted-foreground: #8899AA;
-  --accent: #00E5C4;
-  --accent-foreground: #0D1B2A;
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: #ffffff;
-  --border: #1E3A5F;
-  --input: #1E3A5F;
-  --ring: #00E5C4;
-  --chart-1: #00E5C4;
-  --chart-2: #00B89C;
-  --chart-3: #1E3A5F;
-  --chart-4: #F0F4F8;
-  --chart-5: #8899AA;
-  --radius: 0.75rem;
-  --sidebar: #0A1628;
-  --sidebar-foreground: #F0F4F8;
-  --sidebar-primary: #00E5C4;
-  --sidebar-primary-foreground: #0D1B2A;
-  --sidebar-accent: #1B2D44;
-  --sidebar-accent-foreground: #F0F4F8;
-  --sidebar-border: #1E3A5F;
-  --sidebar-ring: #00E5C4;
+  --background: #0F1220;
+  --foreground: #F3F0E8;
+  --card: #171A2B;
+  --card-foreground: #F3F0E8;
+  --popover: #171A2B;
+  --popover-foreground: #F3F0E8;
+  --primary: #F3F0E8;
+  --primary-foreground: #0F1220;
+  --secondary: #1E2236;
+  --secondary-foreground: #F3F0E8;
+  --muted: #1E2236;
+  --muted-foreground: #9A9EB3;
+  --accent: #1E2236;
+  --accent-foreground: #F3F0E8;
+  --destructive: #FF6B4A;
+  --destructive-foreground: #0F1220;
+  --border: #23273B;
+  --input: #2A2F46;
+  --ring: #5B8CFF;
+  --chart-1: #5B8CFF;
+  --chart-2: #3DDC97;
+  --chart-3: #FF6B4A;
+  --chart-4: #F3F0E8;
+  --chart-5: #9A9EB3;
+  --radius: 0.875rem;
+  --sidebar: #0F1220;
+  --sidebar-foreground: #F3F0E8;
+  --sidebar-primary: #F3F0E8;
+  --sidebar-primary-foreground: #0F1220;
+  --sidebar-accent: #1E2236;
+  --sidebar-accent-foreground: #F3F0E8;
+  --sidebar-border: #23273B;
+  --sidebar-ring: #5B8CFF;
+
+  /* Pillar accents */
+  --tech: #5B8CFF;
+  --ai: #3DDC97;
+  --brand: #FF6B4A;
 }
 
 @theme inline {
-  --font-sans: 'DM Sans', 'DM Sans Fallback', sans-serif;
-  --font-serif: 'Syne', 'Syne Fallback', sans-serif;
-  --font-mono: 'Geist Mono', 'Geist Mono Fallback', monospace;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-serif: var(--font-grotesk), system-ui, sans-serif;
+  --font-mono: var(--font-grotesk), ui-monospace, monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -67,6 +72,9 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+  --color-tech: var(--tech);
+  --color-ai: var(--ai);
+  --color-brand: var(--brand);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -88,21 +96,31 @@
   body {
     @apply bg-background text-foreground;
   }
+  ::selection {
+    background: color-mix(in srgb, var(--tech) 35%, transparent);
+  }
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+.eyebrow {
+  @apply text-xs font-semibold uppercase tracking-[0.22em] sm:text-sm;
+}
+
+/* Subtle dotted grid used behind the hero */
+.bg-grid {
+  background-image: radial-gradient(color-mix(in srgb, var(--foreground) 9%, transparent) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 30%, transparent 75%);
 }
 
 @keyframes fade-in-up {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
@@ -115,24 +133,15 @@ html {
   40% { transform: scale(1.0); }
 }
 
-@keyframes particle-float {
-  0% { transform: translate(0, 0) scale(1); opacity: 0.3; }
-  50% { transform: translate(var(--tx, 20px), var(--ty, -30px)) scale(1.2); opacity: 0.6; }
-  100% { transform: translate(var(--tx2, -10px), var(--ty2, 10px)) scale(0.8); opacity: 0.2; }
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
 .animate-fade-in-up {
-  animation: fade-in-up 0.6s ease-out forwards;
+  animation: fade-in-up 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
 .animate-bounce-dot {
   animation: bounce-dot 1.4s infinite ease-in-out both;
 }
 
-.animate-particle {
-  animation: particle-float 6s ease-in-out infinite alternate;
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up { animation: none; }
+  html { scroll-behavior: auto; }
 }
