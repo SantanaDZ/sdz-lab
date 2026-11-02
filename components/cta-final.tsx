@@ -3,26 +3,30 @@
 import { track } from "@vercel/analytics"
 import { WhatsAppButton } from "@/components/whatsapp-button"
 import { CONTACTS, OWNER, REGION, waUrl } from "@/lib/site"
+import { Magnetic, Reveal, TextReveal } from "@/components/motion"
 
 export function CtaFinal() {
   return (
     <section id="contato" className="px-6 pb-24 lg:pb-32">
-      <div className="mx-auto max-w-6xl overflow-hidden rounded-3xl border border-border bg-card">
+      <Reveal y={40} className="mx-auto max-w-6xl overflow-hidden rounded-3xl border border-border bg-card">
         <div className="h-1 bg-gradient-to-r from-tech via-ai to-brand" />
         <div className="grid gap-12 p-8 sm:p-12 lg:grid-cols-[1.2fr_1fr] lg:items-end lg:p-16">
           <div>
-            <h2 className="font-serif text-4xl font-bold leading-[1.05] tracking-tight text-balance sm:text-5xl">
-              Vamos dar o próximo passo juntos?
-            </h2>
+            <TextReveal
+              text="Vamos dar o próximo passo juntos?"
+              delay={0.2}
+              className="font-serif text-4xl font-bold leading-[1.05] tracking-tight text-balance sm:text-5xl"
+            />
             <p className="mt-5 max-w-md text-lg leading-relaxed text-muted-foreground text-pretty">
               Conte o que sua empresa precisa. Respondemos rápido e o orçamento é grátis.
             </p>
-            <WhatsAppButton
-              message="Olá! Quero um orçamento grátis com a SDZLab."
-              label="Orçamento grátis"
-              trackingLabel="whatsapp_cta_final"
-              className="mt-8"
-            />
+            <Magnetic className="mt-8">
+              <WhatsAppButton
+                message="Olá! Quero um orçamento grátis com a SDZLab."
+                label="Orçamento grátis"
+                trackingLabel="whatsapp_cta_final"
+              />
+            </Magnetic>
           </div>
 
           <div className="lg:text-right">
@@ -46,7 +50,7 @@ export function CtaFinal() {
             </p>
           </div>
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }

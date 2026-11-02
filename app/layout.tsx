@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Inter, Space_Grotesk } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { FloatingWhatsApp } from '@/components/floating-whatsapp'
+import { MotionProvider, ScrollProgress } from '@/components/motion'
 import './globals.css'
 
 const inter = Inter({
@@ -80,8 +81,11 @@ export default function RootLayout({
           `}
         </Script> */}
 
-        {children}
-        <FloatingWhatsApp />
+        <MotionProvider>
+          <ScrollProgress />
+          {children}
+          <FloatingWhatsApp />
+        </MotionProvider>
         <Analytics />
       </body>
     </html>

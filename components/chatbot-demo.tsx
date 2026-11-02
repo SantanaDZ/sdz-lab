@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from "react"
 import { track } from "@vercel/analytics"
 import { Bot, Send } from "lucide-react"
+import { AnimatePresence, motion, Reveal, TextReveal, EASE } from "@/components/motion"
 
 type Message = {
   id: string
@@ -89,17 +90,20 @@ export function ChatbotDemo() {
     <section className="px-6 pb-24 lg:pb-32">
       <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
         <div>
-          <p className="eyebrow text-ai">Demonstração</p>
-          <h2 className="mt-5 font-serif text-3xl font-bold leading-[1.1] tracking-tight text-balance sm:text-4xl">
-            Veja um atendimento com IA na prática.
-          </h2>
+          <Reveal y={12}>
+            <p className="eyebrow text-ai">Demonstração</p>
+          </Reveal>
+          <TextReveal
+            text="Veja um atendimento com IA na prática."
+            className="mt-5 font-serif text-3xl font-bold leading-[1.1] tracking-tight text-balance sm:text-4xl"
+          />
           <p className="mt-5 max-w-md text-lg leading-relaxed text-muted-foreground text-pretty">
             Converse com o assistente ao lado. É assim que seus clientes seriam
             atendidos no WhatsApp — a qualquer hora.
           </p>
         </div>
 
-        <div className="overflow-hidden rounded-3xl border border-border bg-card shadow-2xl shadow-black/30">
+        <Reveal y={40} delay={0.15} className="overflow-hidden rounded-3xl border border-border bg-card shadow-2xl shadow-black/30">
           <div className="flex items-center gap-3 border-b border-border px-5 py-4">
             <div className="flex size-10 items-center justify-center rounded-full bg-ai/15">
               <Bot className="size-5 text-ai" />
@@ -115,9 +119,14 @@ export function ChatbotDemo() {
 
           <div ref={scrollRef} className="flex h-[360px] flex-col gap-3 overflow-y-auto p-5">
             {messages.map((msg) => (
-              <div
+              <motion.div
                 key={msg.id}
-                className={`flex animate-fade-in-up ${msg.from === "user" ? "justify-end" : "justify-start"}`}
+                layout
+                initial={{ opacity: 0, y: 12, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.45, ease: EASE }}
+                style={{ transformOrigin: msg.from === "user" ? "bottom right" : "bottom left" }}
+                className={`flex ${msg.from === "user" ? "justify-end" : "justify-start"}`}
               >
                 <div
                   className={`max-w-[82%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
@@ -128,16 +137,24 @@ export function ChatbotDemo() {
                 >
                   {msg.text}
                 </div>
-              </div>
+              </motion.div>
             ))}
 
-            {isTyping && (
-              <div className="flex animate-fade-in-up justify-start">
-                <div className="rounded-2xl rounded-bl-md bg-secondary">
-                  <TypingIndicator />
-                </div>
-              </div>
-            )}
+            <AnimatePresence>
+              {isTyping && (
+                <motion.div
+                  key="typing"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, transition: { duration: 0.15 } }}
+                  className="flex justify-start"
+                >
+                  <div className="rounded-2xl rounded-bl-md bg-secondary">
+                    <TypingIndicator />
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           {visibleQuickReplies.length > 0 && !isTyping && (
@@ -171,7 +188,7 @@ export function ChatbotDemo() {
               <Send className="size-4" />
             </button>
           </form>
-        </div>
+        </Reveal>
       </div>
     </section>
   )

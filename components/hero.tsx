@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react"
 import { WhatsAppButton } from "@/components/whatsapp-button"
 import { OWNER, REGION } from "@/lib/site"
+import { Magnetic, Reveal, Spotlight, Stagger, StaggerItem, TextReveal } from "@/components/motion"
 
 const pillars = [
   {
@@ -32,7 +33,8 @@ export function Hero() {
       <div className="bg-grid pointer-events-none absolute inset-0" />
 
       <div className="relative mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-[1.15fr_1fr]">
-        <div className="animate-fade-in-up">
+        <div>
+          <Reveal y={12}>
           <p className="eyebrow flex flex-wrap items-center gap-x-3 gap-y-1 text-muted-foreground">
             <span className="text-tech">Tecnologia</span>
             <span aria-hidden>·</span>
@@ -40,22 +42,31 @@ export function Hero() {
             <span aria-hidden>·</span>
             <span className="text-brand">Design</span>
           </p>
+          </Reveal>
 
-          <h1 className="mt-6 font-serif text-5xl font-bold leading-[1.02] tracking-tight text-balance sm:text-6xl lg:text-7xl">
-            O próximo passo da sua empresa.
-          </h1>
+          <TextReveal
+            as="h1"
+            immediate
+            delay={0.1}
+            text="O próximo passo da sua empresa."
+            className="mt-6 font-serif text-5xl font-bold leading-[1.02] tracking-tight text-balance sm:text-6xl lg:text-7xl"
+          />
 
+          <Reveal delay={0.45}>
           <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground text-pretty">
             Venda mais e trabalhe menos com tecnologia que funciona para o seu
             negócio — do site ao atendimento com IA, da marca às campanhas.
           </p>
 
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-            <WhatsAppButton
-              message="Olá! Vi o site da SDZLab e quero levar minha empresa para o próximo passo."
-              label="Quero evoluir"
-              trackingLabel="whatsapp_hero_cta"
-            />
+            <Magnetic className="w-full sm:w-auto">
+              <WhatsAppButton
+                message="Olá! Vi o site da SDZLab e quero levar minha empresa para o próximo passo."
+                label="Quero evoluir"
+                trackingLabel="whatsapp_hero_cta"
+                className="w-full sm:w-auto"
+              />
+            </Magnetic>
             <a
               href="#tecnologia"
               className="inline-flex items-center justify-center rounded-full border border-input px-7 py-3.5 font-serif text-base font-semibold text-foreground transition-colors hover:bg-secondary"
@@ -67,14 +78,16 @@ export function Hero() {
           <p className="mt-8 text-sm text-muted-foreground">
             {OWNER} · {REGION}
           </p>
+          </Reveal>
         </div>
 
-        <div className="animate-fade-in-up flex flex-col gap-3 [animation-delay:120ms]">
+        <Stagger immediate delay={0.35} stagger={0.1} className="flex flex-col gap-3">
           {pillars.map((p, i) => (
+            <StaggerItem key={p.href}>
+            <Spotlight className="rounded-2xl border border-border bg-card transition-colors hover:border-input">
             <a
-              key={p.href}
               href={p.href}
-              className="group flex items-center gap-5 rounded-2xl border border-border bg-card p-6 transition-colors hover:border-input hover:bg-secondary"
+              className="group flex items-center gap-5 p-6"
             >
               <span className="font-serif text-sm font-semibold text-muted-foreground tabular-nums">
                 0{i + 1}
@@ -90,8 +103,10 @@ export function Hero() {
               </span>
               <ArrowUpRight className="size-5 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
             </a>
+            </Spotlight>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   )
