@@ -6,6 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import { Reveal, Stagger, StaggerItem, TextReveal } from "@/components/motion"
 
 const faqs = [
   {
@@ -45,14 +46,19 @@ export function FaqSection() {
     <section id="faq" className="px-6 py-24 lg:py-32">
       <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
         <div>
-          <p className="eyebrow text-muted-foreground">Dúvidas</p>
-          <h2 className="mt-5 font-serif text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl">
-            Perguntas frequentes
-          </h2>
+          <Reveal y={12}>
+            <p className="eyebrow text-muted-foreground">Dúvidas</p>
+          </Reveal>
+          <TextReveal
+            text="Perguntas frequentes"
+            className="mt-5 font-serif text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl"
+          />
         </div>
 
         <Accordion type="single" collapsible className="w-full">
+          <Stagger stagger={0.06}>
           {faqs.map((faq, i) => (
+            <StaggerItem key={i}>
             <AccordionItem key={i} value={`item-${i}`} className="border-border">
               <AccordionTrigger className="py-6 text-left font-serif text-lg font-semibold text-foreground hover:no-underline">
                 {faq.question}
@@ -61,7 +67,9 @@ export function FaqSection() {
                 {faq.answer}
               </AccordionContent>
             </AccordionItem>
+            </StaggerItem>
           ))}
+          </Stagger>
         </Accordion>
       </div>
     </section>

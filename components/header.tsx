@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
 import { Logo } from "@/components/logo"
 import { WhatsAppButton } from "@/components/whatsapp-button"
+import { AnimatePresence, EASE, motion } from "@/components/motion"
 
 const navLinks = [
   { label: "Tecnologia", href: "#tecnologia" },
@@ -25,7 +26,10 @@ export function Header() {
   }, [])
 
   return (
-    <header
+    <motion.header
+      initial={{ y: -24, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: EASE }}
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
         scrolled || mobileOpen
           ? "border-b border-border bg-background/85 backdrop-blur-xl"
@@ -66,25 +70,39 @@ export function Header() {
         </button>
       </div>
 
+      <AnimatePresence initial={false}>
       {mobileOpen && (
-        <nav className="flex flex-col gap-1 border-t border-border px-6 pb-6 pt-3 lg:hidden">
-          {navLinks.map((link) => (
-            <a
+        <motion.nav
+          key="mobile-nav"
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: "auto", opacity: 1 }}
+          exit={{ height: 0, opacity: 0 }}
+          transition={{ duration: 0.45, ease: EASE }}
+          className="overflow-hidden border-t border-border lg:hidden"
+        >
+          <div className="flex flex-col gap-1 px-6 pb-6 pt-3">
+          {navLinks.map((link, i) => (
+            <motion.a
+              initial={{ opacity: 0, x: -12 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.05 + i * 0.05, duration: 0.4, ease: EASE }}
               key={link.href}
               href={link.href}
               className="py-2.5 text-base text-muted-foreground transition-colors hover:text-foreground"
               onClick={() => setMobileOpen(false)}
             >
               {link.label}
-            </a>
+            </motion.a>
           ))}
           <WhatsAppButton
             label="Fale com a gente"
             trackingLabel="whatsapp_header_mobile"
             className="mt-3 w-full"
           />
-        </nav>
+          </div>
+        </motion.nav>
       )}
-    </header>
+      </AnimatePresence>
+    </motion.header>
   )
 }

@@ -22,10 +22,10 @@
   --destructive-foreground: #0F1220;
   --border: #23273B;
   --input: #2A2F46;
-  --ring: #5B8CFF;
-  --chart-1: #5B8CFF;
-  --chart-2: #3DDC97;
-  --chart-3: #FF6B4A;
+  --ring: #7F9BE0;
+  --chart-1: #7F9BE0;
+  --chart-2: #74C4A0;
+  --chart-3: #E0907A;
   --chart-4: #F3F0E8;
   --chart-5: #9A9EB3;
   --radius: 0.875rem;
@@ -36,12 +36,12 @@
   --sidebar-accent: #1E2236;
   --sidebar-accent-foreground: #F3F0E8;
   --sidebar-border: #23273B;
-  --sidebar-ring: #5B8CFF;
+  --sidebar-ring: #7F9BE0;
 
-  /* Pillar accents */
-  --tech: #5B8CFF;
-  --ai: #3DDC97;
-  --brand: #FF6B4A;
+  /* Pillar accents — desaturated for a calmer, premium feel */
+  --tech: #7F9BE0;
+  --ai: #74C4A0;
+  --brand: #E0907A;
 }
 
 @theme inline {
